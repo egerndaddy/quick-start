@@ -1,0 +1,128 @@
+policy_groups:
+- select:
+    name: 谷歌
+    policies:
+    - 所有地区
+    flatten: true
+- select:
+    name: 电报
+    policies:
+    - 所有地区
+    flatten: true
+- select:
+    name: 推特
+    policies:
+    - 所有地区
+    flatten: true
+- select:
+    name: 油管
+    policies:
+    - 所有地区
+    flatten: true
+- select:
+    name: ChatGPT
+    policies:
+    - 所有地区
+    flatten: true
+- select:
+    name: 苹果
+    policies:
+    - 直连
+    - 所有地区
+    flatten: true
+- fallback:
+    name: 美国
+    policies:
+    - 所有代理
+    flatten: true
+    filter: (🇺🇸)|(美)|(States)|(US)
+- fallback:
+    name: 日本
+    policies:
+    - 所有代理
+    flatten: true
+    filter: (🇯🇵)|(日)|(日本)|(JP)
+- fallback:
+    name: 新加坡
+    policies:
+    - 所有代理
+    flatten: true
+    filter: (🇸🇬)|(新)|(新加坡)|(SG)
+- select:
+    name: 直连
+    policies:
+    - DIRECT
+    hidden: true
+- select:
+    name: 所有地区
+    policies:
+    - 美国
+    - 日本
+    - 新加坡
+- external:
+    name: 所有订阅
+    type: select
+    urls:
+    - 你的订阅地址
+- select:
+    name: 所有代理
+    policies:
+    - 所有订阅
+    flatten: true
+rules:
+- domain_regex:
+    match: ^ad\..*|^ads\..*
+    policy: REJECT
+- rule_set:
+    match: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
+    policy: REJECT
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Google/Google.list
+    policy: 谷歌
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Telegram/Telegram.list
+    policy: 电报
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Twitter/Twitter.list
+    policy: 推特
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/YouTube/YouTube.list
+    policy: 油管
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/OpenAI/OpenAI.list
+    policy: ChatGPT
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple.list
+    policy: 苹果
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple_Domain.list
+    policy: 苹果
+- domain:
+    match: ifconfig.me
+    policy: 直连
+- domain_suffix:
+    match: cn
+    policy: 直连
+- geoip:
+    match: CN
+    policy: 直连
+- ip_cidr:
+    match: 192.168.0.0/16
+    policy: 直连
+- ip_cidr:
+    match: 10.0.0.0/8
+    policy: 直连
+- ip_cidr:
+    match: 127.0.0.0/8
+    policy: 直连
+- ip_cidr:
+    match: 172.16.0.0/12
+    policy: 直连
+- ip_cidr:
+    match: 192.128.0.0/16
+    policy: 直连
+- ip_cidr:
+    match: 224.0.0.0/24
+    policy: 直连
+- default:
+    policy: 所有代理
