@@ -4,50 +4,59 @@ policy_groups:
     policies:
     - 所有地区
     flatten: true
+    icon: https://avatars.githubusercontent.com/u/1342004?s=200&v=4
 - select:
     name: 电报
     policies:
     - 所有地区
     flatten: true
+    icon: https://telegram.org/img/apple-touch-icon.png
 - select:
     name: 推特
     policies:
     - 所有地区
     flatten: true
+    icon: https://avatars.githubusercontent.com/u/50278?s=200&v=4
 - select:
     name: 油管
     policies:
     - 所有地区
     flatten: true
+    icon: https://www.youtube.com/s/desktop/7197d3dc/img/favicon_144x144.png
 - select:
     name: ChatGPT
     policies:
     - 所有地区
     flatten: true
+    icon: https://avatars.githubusercontent.com/u/14957082?s=200&v=4
 - select:
     name: 苹果
     policies:
     - 直连
     - 所有地区
     flatten: true
+    icon: https://avatars.githubusercontent.com/u/10639145?s=200&v=4
 - fallback:
     name: 美国
     policies:
     - 所有代理
     flatten: true
     filter: (🇺🇸)|(美)|(States)|(US)
+    icon: 🇺🇸
 - fallback:
     name: 日本
     policies:
     - 所有代理
     flatten: true
     filter: (🇯🇵)|(日)|(日本)|(JP)
+    icon: 🇯🇵
 - fallback:
     name: 新加坡
     policies:
     - 所有代理
     flatten: true
     filter: (🇸🇬)|(新)|(新加坡)|(SG)
+    icon: 🇸🇬
 - select:
     name: 直连
     policies:
@@ -59,16 +68,19 @@ policy_groups:
     - 美国
     - 日本
     - 新加坡
+    icon: 😊
 - external:
     name: 所有订阅
     type: select
     urls:
     - 你的订阅地址
+    icon: 🤣
 - select:
     name: 所有代理
     policies:
     - 所有订阅
     flatten: true
+    icon: 🌹
 rules:
 - domain_regex:
     match: ^ad\..*|^ads\..*
