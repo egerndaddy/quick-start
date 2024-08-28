@@ -11,7 +11,7 @@
 1. 打开 Egern 应用，在应用界面底部的 Tab 栏中选择“工具”。
 3. 在工具页面的右上角，您会看到 `...` 图标，点击该图标。
 4. 在弹出的菜单中选择“下载配置”。
-5. 在“下载配置”页面的 URL 输入框中，输入地址：`https://raw.githubusercontent.com/egernfather/quick-start/main/example.yaml`
+5. 在“下载配置”页面的 URL 输入框中，输入地址：`https://raw.githubusercontent.com/egerndaddy/quick-start/main/example.yaml`
 6. 完成输入后，点击“下载”按钮。Egern 将从您提供的 URL 地址下载配置文件。
 
 ### 添加订阅
