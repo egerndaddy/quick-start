@@ -1,18 +1,38 @@
 name: "小组件"
 description: "所有小组件集合"
 scriptings:
+# 加密货币实时行情，支持多种 Widget 尺寸，无需配置环境变量
 - generic:
     name: 加密货币行情
     script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/widget_crypto_price.js
+
+# 倒计时小组件
+# env:
+#   TITLE   - 倒计时标题，默认 "目标日"
+#   DATE    - 目标日期，ISO 8601 格式，默认 "2026-12-31T00:00:00+08:00"
+#   ICON    - SF Symbol 图标名，默认 "flag.checkered"
+#   COLOR_1 - 渐变起始色，默认 "#6366F1"
+#   COLOR_2 - 渐变结束色，默认 "#8B5CF6"
 - generic:
     name: 倒计时
     script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/countdown.js
+
+# 一言（Hitokoto）小组件，每次刷新展示一条随机名言/语录
+# env:
+#   TYPE - 句子类型: a(动画) b(漫画) c(游戏) d(文学) e(原创)
+#          f(网络) g(其他) h(影视) i(诗词) j(网易云) k(哲学)
+#          默认不限
 - generic:
     name: 一言
     script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/hitokoto.js
+
+# 天气小组件，使用 Open-Meteo API，无需 API Key
+# env:
+#   CITY - 城市名称（英文），默认 "London"
 - generic:
     name: 天气
     script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/weather.js
+
 widgets:
 - name: 加密货币行情
   script_name: 加密货币行情
