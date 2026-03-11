@@ -1,0 +1,24 @@
+name: "小组件"
+description: "所有小组件集合"
+scriptings:
+- generic:
+    name: 加密货币行情
+    script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/widget_crypto_price.js
+- generic:
+    name: 倒计时
+    script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/countdown.js
+- generic:
+    name: 一言
+    script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/hitokoto.js
+- generic:
+    name: 天气
+    script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/weather.js
+widgets:
+- name: 加密货币行情
+  script_name: 加密货币行情
+- name: 倒计时
+  script_name: 倒计时
+- name: 一言
+  script_name: 一言
+- name: 天气
+  script_name: 天气
