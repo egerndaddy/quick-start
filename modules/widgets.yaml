@@ -64,6 +64,11 @@ scriptings:
     name: 天气
     script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/weather.js
 
+# 今日进度小组件，展示今天/本月/本年的时间进度，纯本地计算无需网络
+- generic:
+    name: 今日进度
+    script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/daily-progress.js
+
 widgets:
 - name: 加密货币行情
   script_name: 加密货币行情
@@ -73,3 +78,5 @@ widgets:
   script_name: 一言
 - name: 天气
   script_name: 天气
+- name: 今日进度
+  script_name: 今日进度
