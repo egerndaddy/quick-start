@@ -1,0 +1,33 @@
+name: "服务器监控"
+description: "服务器监控小组件，通过 SSH 获取服务器状态，支持所有 Widget 尺寸"
+
+env_schema:
+  host:
+    name: 主机地址
+    description: SSH 服务器地址
+    default_value: ""
+  port:
+    name: 端口
+    description: SSH 端口号
+    default_value: "22"
+  username:
+    name: 用户名
+    description: SSH 登录用户名
+    default_value: "root"
+  password:
+    name: 密码
+    description: "SSH 密码（与私钥二选一）"
+    default_value: ""
+  privateKey:
+    name: 私钥
+    description: "SSH 私钥（与密码二选一）"
+    default_value: ""
+
+scriptings:
+- generic:
+    name: 服务器监控
+    script_url: https://raw.githubusercontent.com/egerndaddy/quick-start/main/modules/server-monitor.js
+
+widgets:
+- name: 服务器监控
+  script_name: 服务器监控
