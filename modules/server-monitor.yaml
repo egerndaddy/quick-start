@@ -18,9 +18,17 @@ env_schema:
     name: 密码
     description: "SSH 密码（与私钥二选一）"
     default_value: ""
+  privateKeyBase64:
+    name: 私钥 Base64（推荐）
+    description: "完整 PEM 私钥的单行 Base64；避免粘贴时换行损坏"
+    default_value: ""
   privateKey:
-    name: 私钥
-    description: "SSH 私钥（与密码二选一）"
+    name: 原始私钥（兼容）
+    description: "完整 PEM 私钥；推荐优先使用上面的 Base64 字段"
+    default_value: ""
+  passphrase:
+    name: 私钥口令
+    description: "私钥设置了口令时填写；无口令请留空"
     default_value: ""
 
 scriptings:
