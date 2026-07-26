@@ -1,9 +1,35 @@
 // Server Monitor Widget for Egern
 //
-// Required env: host, username, password (or privateKey), port (default 22)
+// Required env: host, username, password, privateKey or privateKeyBase64, port (default 22)
 
 export default async function (ctx) {
   // ─── Helpers ────────────────────────────────
+  // Base64 decoder kept local for compatibility with Egern's JS runtime.
+  const decodeBase64 = input => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+    const clean = String(input || '').replace(/[^A-Za-z0-9+/=]/g, '');
+    let bits = 0, value = 0, out = '';
+    for (const ch of clean) {
+      if (ch === '=') break;
+      const n = chars.indexOf(ch);
+      if (n < 0) continue;
+      value = (value << 6) | n;
+      bits += 6;
+      if (bits >= 8) {
+        bits -= 8;
+        out += String.fromCharCode((value >> bits) & 0xff);
+      }
+    }
+    return out;
+  };
+
+  const normalizePrivateKey = key => {
+    let value = String(key || '').trim();
+    // Accept literal \\n pasted by single-line editors.
+    if (!value.includes('\n') && value.includes('\\n')) value = value.replace(/\\n/g, '\n');
+    return value.replace(/\r\n?/g, '\n').trim() + '\n';
+  };
+
   const fmtBytes = b => {
     if (b >= 1e12) return (b / 1e12).toFixed(1) + 'T';
     if (b >= 1e9)  return (b / 1e9).toFixed(1) + 'G';
@@ -15,10 +41,17 @@ export default async function (ctx) {
   // ─── Fetch Data via SSH ─────────────────────
   let d;
   try {
-    const { host, username, password, privateKey, port } = ctx.env;
+    const { host, username, password, privateKey, privateKeyBase64, passphrase, port } = ctx.env;
+    let key = '';
+    if (privateKeyBase64) key = normalizePrivateKey(decodeBase64(privateKeyBase64));
+    else if (privateKey) key = normalizePrivateKey(privateKey);
+
+    if (!host || !username) throw new Error('请填写主机地址和用户名');
+    if (!key && !password) throw new Error('请填写密码或私钥');
+
     const session = await ctx.ssh.connect({
       host, port: Number(port || 22), username,
-      ...(privateKey ? { privateKey } : { password }),
+      ...(key ? { privateKey: key, ...(passphrase ? { passphrase } : {}) } : { password }),
       timeout: 8000,
     });
 
